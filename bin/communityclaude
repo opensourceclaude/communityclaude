@@ -1,0 +1,37 @@
+#!/bin/sh
+
+# CommunityClaude — Claude Code with any LLM
+#
+# This script detects the best runtime environment and runs CommunityClaude.
+
+# Get the directory of this script
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+
+# Check if we're running from source or built distribution
+SIMPLE_CLI="$PROJECT_ROOT/src/simple-cli.js"
+MAIN_ENTRY="$PROJECT_ROOT/src/entrypoints/cli.tsx"
+
+# Function to check if a command exists
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+# Try to run with Bun first (preferred)
+if command_exists bun; then
+    if [ -f "$SIMPLE_CLI" ]; then
+        # Run the simple CLI which handles basic commands
+        bun run "$SIMPLE_CLI" "$@"
+    elif [ -f "$MAIN_ENTRY" ]; then
+        # Run directly from source
+        bun run "$MAIN_ENTRY" "$@"
+    else
+        echo "communityclaude: Could not find entry point"
+        echo "Please run 'bun run build' first or check your installation"
+        exit 1
+    fi
+else
+    echo "communityclaude: Bun is not installed"
+    echo "Please install Bun first: curl -fsSL https://bun.sh/install | bash"
+    exit 1
+fi

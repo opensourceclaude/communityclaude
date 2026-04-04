@@ -1,0 +1,58 @@
+{
+  "name": "communityclaude",
+  "version": "1.0.0",
+  "description": "Use Claude Code with any LLM - not just Claude. CommunityClaude is a fork of the Claude Code source leak with an OpenAI-compatible provider shim.",
+  "main": "index.js",
+  "bin": {
+    "communityclaude": "./bin/communityclaude"
+  },
+  "scripts": {
+    "build": "bun run scripts/build.ts",
+    "dev": "bun run scripts/dev.js",
+    "start": "bun run index.js",
+    "clean": "rm -rf dist",
+    "test-install": "bun run test-install.js"
+  },
+  "keywords": [
+    "claude",
+    "ai",
+    "llm",
+    "openai",
+    "chatbot",
+    "assistant",
+    "agent"
+  ],
+  "author": "CommunityClaude Contributors",
+  "license": "MIT",
+  "dependencies": {
+    "@commander-js/extra-typings": "^14.0.0",
+    "chalk": "^5.6.2",
+    "lodash-es": "^4.18.1",
+    "typescript": "^5.0.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0"
+  },
+  "engines": {
+    "bun": ">=1.0.0"
+  },
+  "files": [
+    "dist/",
+    "bin/",
+    "src/",
+    "scripts/",
+    "index.js",
+    "README.md",
+    "INSTALL.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/communityclaude/communityclaude.git"
+  },
+  "bugs": {
+    "url": "https://github.com/communityclaude/communityclaude/issues"
+  },
+  "homepage": "https://github.com/communityclaude/communityclaude#readme"
+}
